@@ -9,20 +9,23 @@ export default StyleSheet.create({
 
     header: {
         alignSelf: "stretch",
-        paddingVertical: 60,
+        paddingVertical: 45,
         backgroundColor: "#EF7676",
         alignItems: "center",
+    },
+    
+    returnButton:{
+        alignSelf: "stretch",
+        justifyContent: "flex-start",
+        marginLeft: 15,
+        marginTop: -15,
+        marginBottom: 10
     },
 
     textHeader: {
         fontSize: 30,
         fontWeight: "bold"
     },
-
-    // categorias: {
-    //     flexDirection: "row",
-    //     flexWrap: 'wrap',        
-    // },
 
     categoria:{
         width: 320,
