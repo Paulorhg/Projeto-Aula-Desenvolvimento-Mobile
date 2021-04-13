@@ -9,9 +9,17 @@ export default StyleSheet.create({
 
     header: {
         alignSelf: "stretch",
-        paddingVertical: 60,
+        paddingVertical: 45,
         backgroundColor: "#EF7676",
         alignItems: "center",
+    },
+    
+    returnButton:{
+        alignSelf: "stretch",
+        justifyContent: "flex-start",
+        marginLeft: 15,
+        marginTop: -15,
+        marginBottom: 10
     },
 
     textHeader: {
