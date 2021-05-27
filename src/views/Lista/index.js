@@ -17,7 +17,7 @@ export default function Lista() {
         navigation.navigate('Detalhes');
     }
 
-    const dados = ["Donna Oliva", "Dona Amélia", "Alecrim", "Pizza 10", "Pizza Creck", "Terraça"];
+    const dados = ["Pizza", "Bares", "Shows", "Festas"];
 
 
     return (
