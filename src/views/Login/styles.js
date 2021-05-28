@@ -31,16 +31,14 @@ export default StyleSheet.create({
         fontWeight: "bold"
     },
 
+    input: {
+        height: 40,
+        width: 200,
+        margin: 12,
+        borderWidth: 1,
+      },
+
     button: {
         padding: 50
-    },
-
-    buttomLogout:{
-        alignSelf: "stretch",
-        justifyContent: "flex-start",
-        marginLeft: 15,
-        marginTop: -15,
-        marginBottom: 10,
-        backgroundColor: "#EF7676",
     }
 });
