@@ -4,15 +4,20 @@ export function signIn(email, senha) {
     return new Promise(resolve => {
         console.log("passou service");
 
-        // const data = {
-        //     email=email,
-        //     senha=senha
-        // }
 
-        // console.log(data.email);
+
+        const data = {
+            email,
+            senha
+        }
+
+        // data.email = email;
+        // data.senha = senha
+
+        console.log(data.email);
 
     
-        api.post('/auth/authenticate', {email, senha})
+        api.post('/auth/authenticate', data)
             .then(resp => resp.data)
             .then(resp => {
                 
