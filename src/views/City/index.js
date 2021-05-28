@@ -1,7 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
+import api from '../../services/api';
 
 import AuthContext from '../../contexts/auth';
 
@@ -26,7 +27,6 @@ export default function City() {
     }
 
     const [ cidades, setCidades ] = useState([]);
-    const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
         {label: 'Sorocaba', value: 'sorocaba'},
@@ -38,13 +38,11 @@ export default function City() {
         try {
             api.get('cidade',{}).then(res => {
                 console.log(res.data);
-                setCidades(res.data);
+                setCidades(res.data.cidades);
                 // res.data.cidades.map( )
             })
         } catch (error) {
-            
         }
-        
     }, []);
 
     
@@ -67,20 +65,18 @@ export default function City() {
             <Text style={styles.textHeader}>
                 CIDADE</Text>
             </View>
+            {cidades.map(cidade => {
+                const item = {label: cidade.name, value: cidade._id}
+                setItems(...items, item)
+            })}
             <View style={styles.content}>
                 <Text style={styles.title}>Escolha a cidade</Text>
 
                 <DropDownPicker
                     
-                    open={open}
-                    value={value}
-                    items={cidades}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
+                    items={items}
 
-
-                    defaultValue={'Sorocaba'}
+                    defaultValue={'Cidade'}
                     containerStyle={{height: 50, width: 200}}
                     style={{backgroundColor: '#fafafa'}}
                     itemStyle={{
