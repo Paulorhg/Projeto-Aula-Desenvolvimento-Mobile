@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, FlatList, SafeAreaView} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ export default function Categoria() {
     // const cidade =  this.props.navigation.getParam('cidade', 'nothing sent')
     const navigation = useNavigation();
     const catSelecionada = 'Sorocaba';
+    const [ categorias, setCategorias ] = useState(["carregando"]);
 
     function navigateToList(){
         navigation.navigate('Lista', {
@@ -22,7 +23,20 @@ export default function Categoria() {
         navigation.navigate('City');
     }
 
-    const dados = ["Pizza", "Bares", "Shows", "Festas", "Oriental", "Churrascaria"];
+    useEffect(() => {
+        
+        try {
+            api.get('categoria',{}).then(res => {
+                console.log(res.data);
+                setCategorias(res.data.categorias.name);
+                // res.data.cidades.map( )
+            })
+        } catch (error) {
+            
+        }
+    }, []);
+
+    // const dados = ["Pizza", "Bares", "Shows", "Festas", "Oriental", "Churrascaria"];
 
     return (
         <View style={styles.container}>
@@ -38,14 +52,14 @@ export default function Categoria() {
             </View>
 
             <FlatList
-                data={dados}
+                data={categorias}
                 style={styles.categorias}
                 numColumns={2}
                 keyExtractor={item => item}
                 renderItem={({ item }) => {
                     return (
                         <TouchableOpacity 
-                            onPress={() => navigateToList}
+                            onPress={() => navigateToList()}
                         >
                             <View style={styles.categoria}>
                                 <Text>{item}</Text>
