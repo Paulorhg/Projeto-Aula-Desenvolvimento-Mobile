@@ -26,6 +26,7 @@ export function AuthProvider({children}){
 
 
     async function signIn(){
+        console.log("passou context");
         const response = await auth.signIn();
 
         setUser(response.user);

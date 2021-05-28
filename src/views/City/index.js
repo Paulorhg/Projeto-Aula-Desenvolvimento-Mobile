@@ -16,15 +16,6 @@ export default function City() {
 
     const { signed, user, signOut } = useContext(AuthContext);
 
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        {label: 'Sorocaba', value: 'sorocaba'},
-        {label: 'São Paulo', value: 'são paulo'},
-        {label: 'Campinas', value: 'campinas'},
-    ]);
-
-
 
     function navigateToCategoria(cat){
 
@@ -34,6 +25,29 @@ export default function City() {
         );
     }
 
+    const [ cidades, setCidades ] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        {label: 'Sorocaba', value: 'sorocaba'},
+        {label: 'São Paulo', value: 'são paulo'},
+        {label: 'Campinas', value: 'campinas'},
+    ]);
+
+    useEffect(() => {
+        try {
+            api.get('cidade',{}).then(res => {
+                console.log(res.data);
+                setCidades(res.data);
+                // res.data.cidades.map( )
+            })
+        } catch (error) {
+            
+        }
+        
+    }, []);
+
+    
 
 
     function handleSignOut(){
@@ -60,7 +74,7 @@ export default function City() {
                     
                     open={open}
                     value={value}
-                    items={items}
+                    items={cidades}
                     setOpen={setOpen}
                     setValue={setValue}
                     setItems={setItems}

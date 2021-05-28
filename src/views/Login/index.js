@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Text, TextInput, Button } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { signIn } from '../../services/auth';
 import AuthContext from '../../contexts/auth';
@@ -12,15 +12,15 @@ export default function Login() {
     console.log(signed);
     console.log(user);
 
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+
     const navigation = useNavigation();
 
     async function Logar(){
-
-        const response = await signIn();
-
-        // console.log(response);
-
-        // navigation.navigate('City');
+        console.log(email);
+        const response = await signIn(email, senha);
+       
     }
 
 
@@ -31,9 +31,17 @@ export default function Login() {
             </View>
             <View style={styles.content}>
                 <Text style={styles.title}>Email</Text>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={text => setEmail(text)}
+                />
+
 
                 <Text style={styles.title}>Senha</Text>
-
+                <TextInput
+                    style={styles.input}
+                    onChangeText={text=> setSenha(text)}
+                />
 
                 <Button style={styles.button} title="Login" onPress={Logar}/>
             </View>
