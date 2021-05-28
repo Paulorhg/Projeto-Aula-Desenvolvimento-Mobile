@@ -25,9 +25,9 @@ export function AuthProvider({children}){
     }, []);
 
 
-    async function signIn(){
+    async function signIn(email, senha){
         console.log("passou context");
-        const response = await auth.signIn();
+        const response = await auth.signIn(email, senha);
 
         setUser(response.user);
 
