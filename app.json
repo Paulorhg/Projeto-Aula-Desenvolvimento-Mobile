@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AC1_Mobile",
-    "slug": "AC1_Mobile",
+    "name": "AC2_Mobile",
+    "slug": "ac2_mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/Paulorhg/Projeto-Aula-Desenvolvimento-Mobile"
   }
 }
