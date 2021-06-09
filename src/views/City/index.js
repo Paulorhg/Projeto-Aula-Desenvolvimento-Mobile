@@ -38,7 +38,7 @@ export default function City() {
         try {
             api.get('cidade',{}).then(res => {
                 console.log(res.data);
-                setCidades(res.data.cidades);
+                //setCidades(res.data.cidades);
                 // res.data.cidades.map( )
             })
         } catch (error) {

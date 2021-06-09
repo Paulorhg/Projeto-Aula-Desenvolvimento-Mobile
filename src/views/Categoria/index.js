@@ -11,7 +11,7 @@ export default function Categoria() {
     // const cidade =  this.props.navigation.getParam('cidade', 'nothing sent')
     const navigation = useNavigation();
     const catSelecionada = 'Sorocaba';
-    const [ categorias, setCategorias ] = useState(["carregando"]);
+    const [ categorias, setCategorias ] = useState([]);
 
     function navigateToList(){
         navigation.navigate('Lista', {
@@ -26,9 +26,9 @@ export default function Categoria() {
     useEffect(() => {
         
         try {
-            api.get('categoria',{}).then(res => {
+            api.get('/categoria',{}).then(res => {
                 console.log(res.data);
-                setCategorias(res.data.categorias.name);
+                setCategorias(res.data.categorias.estabelecimento.name);
                 // res.data.cidades.map( )
             })
         } catch (error) {
@@ -51,23 +51,46 @@ export default function Categoria() {
                 
             </View>
 
-            <FlatList
-                data={categorias}
-                style={styles.categorias}
-                numColumns={2}
-                keyExtractor={item => item}
-                renderItem={({ item }) => {
-                    return (
-                        <TouchableOpacity 
-                            onPress={() => navigateToList()}
-                        >
-                            <View style={styles.categoria}>
-                                <Text>{item}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    );
-                }}
-            />
+            {
+                categorias === null ? 
+                
+                <FlatList
+                    data={"carregando"}
+                    style={styles.categorias}
+                    numColumns={2}
+                    keyExtractor={item => item}
+                    renderItem={({ item }) => {
+                        return (
+                            <TouchableOpacity 
+                                onPress={() => navigateToList()}
+                            >
+                                <View style={styles.categoria}>
+                                    <Text>{item}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        );
+                    }}
+                />
+                :
+                    <FlatList
+                        data={categorias}
+                        style={styles.categorias}
+                        numColumns={2}
+                        keyExtractor={item => item}
+                        renderItem={({ item }) => {
+                            return (
+                                <TouchableOpacity 
+                                    onPress={() => navigateToList()}
+                                >
+                                    <View style={styles.categoria}>
+                                        <Text>{item}</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            );
+                        }}
+                    />
+            }
+
         </View>
     );
 }
