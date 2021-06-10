@@ -29,16 +29,19 @@ export default function City() {
     const [ cidades, setCidades ] = useState([]);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-        {label: 'Sorocaba', value: 'sorocaba'},
-        {label: 'São Paulo', value: 'são paulo'},
-        {label: 'Campinas', value: 'campinas'},
+        // {label: 'Sorocaba', value: 'sorocaba'},
+        // {label: 'São Paulo', value: 'são paulo'},
+        // {label: 'Campinas', value: 'campinas'},
     ]);
 
     useEffect(() => {
         try {
             api.get('cidade',{}).then(res => {
-                console.log(res.data);
-                //setCidades(res.data.cidades);
+                console.log(res.data.cidades);
+                // res.data.cidades.map(cidade =>{
+                    setCidades(...cidades, res.data.cidades);
+
+                // })                
                 // res.data.cidades.map( )
             })
         } catch (error) {
@@ -52,6 +55,10 @@ export default function City() {
         signOut();
     }
 
+    function log(){
+        console.log("cidades: " + cidades)
+        console.log("cidades: " + cidades[2].name)
+        }
 
     return (
         <View style={styles.container}>
@@ -65,10 +72,20 @@ export default function City() {
             <Text style={styles.textHeader}>
                 CIDADE</Text>
             </View>
-            {cidades.map(cidade => {
-                const item = {label: cidade.name, value: cidade._id}
-                setItems(...items, item)
-            })}
+            {
+                cidades.length === 0 ? () => {setItems("carregando")} 
+                :
+                
+                // cidades.map(cidade => {
+                //     const item = {
+                //         label: cidade.name, 
+                //         value: cidade._id
+                //     }
+                //     setItems(...items, item)
+                // })
+                log()
+            }
+
             <View style={styles.content}>
                 <Text style={styles.title}>Escolha a cidade</Text>
 

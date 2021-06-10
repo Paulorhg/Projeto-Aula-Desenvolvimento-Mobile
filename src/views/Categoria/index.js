@@ -5,6 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 import styles from "./styles";
 
+import api from "../../services/api";
 
 export default function Categoria() {
 
@@ -27,8 +28,8 @@ export default function Categoria() {
         
         try {
             api.get('/categoria',{}).then(res => {
-                console.log(res.data);
-                setCategorias(res.data.categorias.estabelecimento.name);
+                console.log(res);
+                setCategorias(res.data.categorias);
                 // res.data.cidades.map( )
             })
         } catch (error) {
