@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, SafeAreaView} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
+import api from '../../services/api';
 
 import styles from "./styles";
 
-export default function Lista() {
+export default function Lista({route}) {
 
     const navigation = useNavigation();
+    const {categoria} = route.params;
+    const [ estabelecimentos, setEstabelecimentos] = useState([]);
+
+    console.log(categoria)
 
     function navigateToCategoria(){
         navigation.navigate('Categoria');
     }
 
-    function navigateToDetails(){
-        navigation.navigate('Detalhes');
+    function navigateToDetails(escolhido){
+        navigation.navigate('Detalhes', 
+        {
+            estabelecimento: escolhido
+        });
     }
 
-    const dados = ["Pizza", "Bares", "Shows", "Festas"];
+    useEffect(() => {
+        try {
+            api.get('/estabelecimento',{}).then(res => {
+                console.log(res.data.estabelecimentos);
+                setEstabelecimentos(res.data.estabelecimentos);
+            })
+        } catch (error) {
+        }
+    }, []);
+
+
+    // const dados = ["Pizza", "Bares", "Shows", "Festas"];
 
 
     return (
@@ -32,24 +51,29 @@ export default function Lista() {
                 <Text style={styles.textHeader}>LUGARES</Text>
             </View>
 
+            {
+                estabelecimentos.length === 0 ? <></>
+                
+                :
 
-            <FlatList
-                data={dados}
-                style={styles.categorias}
-                numColumns={1}
-                keyExtractor={item => item}
-                renderItem={({ item }) => {
-                    return (
-                        <TouchableOpacity 
-                            onPress={() => navigateToDetails()}
-                        >
-                            <View style={styles.categoria}>
-                                <Text>{item}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    );
-                }}
-            />
+                <FlatList
+                    data={estabelecimentos}
+                    style={styles.estabelecimentos}
+                    numColumns={1}
+                    keyExtractor={item => item}
+                    renderItem={({ item }) => {
+                        return (
+                            <TouchableOpacity 
+                                onPress={() => navigateToDetails(item)}
+                            >
+                                <View style={styles.estabelecimento}>
+                                    <Text style={styles.textList}>{item.nome}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        );
+                    }}
+                />
+            }
         </View>
     );
 }

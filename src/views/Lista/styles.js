@@ -27,7 +27,7 @@ export default StyleSheet.create({
         fontWeight: "bold"
     },
 
-    categoria:{
+    estabelecimento:{
         width: 320,
         height: 120,
         backgroundColor: "#C4C4C4",
@@ -35,5 +35,9 @@ export default StyleSheet.create({
 
         justifyContent: "center",
         alignItems: "center",
+    },
+
+    textList:{
+        fontSize: 20,
     }
 });

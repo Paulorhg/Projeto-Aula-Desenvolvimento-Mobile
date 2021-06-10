@@ -7,16 +7,18 @@ import styles from "./styles";
 
 import api from "../../services/api";
 
-export default function Categoria() {
+export default function Categoria({route}) {
 
-    // const cidade =  this.props.navigation.getParam('cidade', 'nothing sent')
+    
     const navigation = useNavigation();
-    const catSelecionada = 'Sorocaba';
     const [ categorias, setCategorias ] = useState([]);
+    const {cidade} = route.params;
 
-    function navigateToList(){
+    console.log("params " + cidade);
+
+    function navigateToList(idCat){
         navigation.navigate('Lista', {
-            categoria: catSelecionada
+            categoria: idCat
         });
     }
 
@@ -28,9 +30,8 @@ export default function Categoria() {
         
         try {
             api.get('/categoria',{}).then(res => {
-                console.log(res);
-                setCategorias(res.data.categorias);
-                // res.data.cidades.map( )
+                console.log(res.data.categorias);
+                setCategorias(res.data.categorias)
             })
         } catch (error) {
             
@@ -53,25 +54,7 @@ export default function Categoria() {
             </View>
 
             {
-                categorias === null ? 
-                
-                <FlatList
-                    data={"carregando"}
-                    style={styles.categorias}
-                    numColumns={2}
-                    keyExtractor={item => item}
-                    renderItem={({ item }) => {
-                        return (
-                            <TouchableOpacity 
-                                onPress={() => navigateToList()}
-                            >
-                                <View style={styles.categoria}>
-                                    <Text>{item}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        );
-                    }}
-                />
+                categorias.length === 0 ? <></>
                 :
                     <FlatList
                         data={categorias}
@@ -81,10 +64,10 @@ export default function Categoria() {
                         renderItem={({ item }) => {
                             return (
                                 <TouchableOpacity 
-                                    onPress={() => navigateToList()}
+                                    onPress={() => navigateToList(item._id)}
                                 >
                                     <View style={styles.categoria}>
-                                        <Text>{item}</Text>
+                                        <Text>{item.name}</Text>
                                     </View>
                                 </TouchableOpacity>
                             );
