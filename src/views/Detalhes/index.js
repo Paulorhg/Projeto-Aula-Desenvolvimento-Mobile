@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { AntDesign } from '@expo/vector-icons';
+import api from '../../services/api';
 
 import styles from "./styles";
 
-export default function Detalhes() {
+export default function Detalhes({route}) {
 
     const navigation = useNavigation();
+
+    const {estabelecimento} = route.params;
+
+    console.log(" estabelecimento " + estabelecimento.nome)
 
     function navigateToReserve(){
         navigation.navigate('Reserve');
@@ -16,7 +21,6 @@ export default function Detalhes() {
     function navigateToLista(){
         navigation.navigate('Lista');
     }
-
 
     return (
         <View style={styles.container}>
@@ -27,7 +31,7 @@ export default function Detalhes() {
             >
                 <AntDesign name="left" size={24} color="#fff" />
             </TouchableOpacity>
-                <Text style={styles.textHeader}>Nome Restaurante</Text>
+                <Text style={styles.textHeader}>{estabelecimento.nome}</Text>
             </View>
             <View style={styles.infos}>
                 <Text style={styles.titleText}>Descrição</Text>

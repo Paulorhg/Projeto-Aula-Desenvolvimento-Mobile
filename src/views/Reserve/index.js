@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+import api from '../../services/api';
 
 import { AntDesign } from '@expo/vector-icons';
 
@@ -10,6 +11,9 @@ export default function Reserve() {
 
     const navigation = useNavigation();
 
+    const [reserva, setReserva] = useState();
+    const [reservas, setReservas] = useState();
+
     function navigateToReserve(){
         navigation.navigate('Reserve');
     }
@@ -17,6 +21,16 @@ export default function Reserve() {
     function navigateToDetails(){
         navigation.navigate('Detalhes');
     }
+
+    useEffect(() => {
+        try {
+            api.get('/reserva',{}).then(res => {
+                console.log(res.data);
+                setEstabelecimentos(res.data);
+            })
+        } catch (error) {
+        }
+    }, []);
 
     return (
         <View style={styles.container}>
