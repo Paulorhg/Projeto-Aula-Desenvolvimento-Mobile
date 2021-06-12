@@ -33,12 +33,15 @@ export default StyleSheet.create({
 
     input: {
         height: 40,
-        width: 200,
+        width: 250,
         margin: 12,
         borderWidth: 1,
+        borderRadius: 10,
+        backgroundColor: "#DCDCDC"
       },
 
     button: {
-        padding: 50
+        padding: 50,        
+
     }
 });
