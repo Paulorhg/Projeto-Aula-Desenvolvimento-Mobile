@@ -52,6 +52,7 @@ export default function City() {
 
     function handleSignOut(){
         signOut();
+        navigator.navigate('Login')
     }
 
     return (
