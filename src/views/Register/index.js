@@ -1,12 +1,13 @@
 import React, {useState, useContext} from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import AuthContext from '../../contexts/auth';
 
 import styles from "./styles";
 
-export default function Login() {
-    const { signed, user, signIn } = useContext(AuthContext);
+export default function Register() {
+    const { signed, user, register } = useContext(AuthContext);
 
     console.log(signed);
     console.log(user);
@@ -16,21 +17,26 @@ export default function Login() {
 
     const navigation = useNavigation();
 
-    async function Logar(){
+    async function Cadastrar(){
         console.log(email);
-        const response = await signIn(email, senha);
+        const response = await register(email, senha);
        
     }
 
-    function navigateToRegister(){
-        navigation.navigate('Register');
+    function navigateToLogin(){
+        navigation.navigate('Login');
     }
-
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.textHeader}>LOGIN</Text>
+                <TouchableOpacity 
+                    onPress={() => navigateToLogin()}
+                    style={styles.returnButton}
+                >
+                    <AntDesign name="left" size={24} color="#fff" />
+                </TouchableOpacity>
+                <Text style={styles.textHeader}>Cadastro</Text>
             </View>
             <View style={styles.content}>
                 <Text style={styles.title}>Email</Text>
@@ -46,14 +52,7 @@ export default function Login() {
                     onChangeText={text=> setSenha(text)}
                 />
 
-                <Button style={styles.button} title="Login" onPress={Logar}/>
-
-                <TouchableOpacity 
-                    onPress={() => navigateToRegister()}
-                    style={styles.register}
-                >
-                    <Text>Cadastrar</Text>
-                </TouchableOpacity>
+                <Button style={styles.button} title="Cadastrar" onPress={() => Cadastrar()}/>
             </View>
         </View>
     );

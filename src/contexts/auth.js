@@ -24,11 +24,24 @@ export function AuthProvider({children}){
         localStorageData();
     }, []);
 
+    async function register(email, senha){
+        console.log("passou context");
+        const response = await auth.register(email, senha);
+
+        setUser(response.user);
+
+        api.defaults.headers.Authorization = `Bearer ${response.token}`;
+
+        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
+        await AsyncStorage.setItem('@RNAuth:token', response.token);
+    }
 
     async function signIn(email, senha){
         console.log("passou context");
         const response = await auth.signIn(email, senha);
 
+        console.log(response);
+        
         setUser(response.user);
 
         api.defaults.headers.Authorization = `Bearer ${response.token}`;
@@ -45,7 +58,7 @@ export function AuthProvider({children}){
 
     return(
 
-        <AuthContext.Provider value={{signed: !!user, user, signIn, signOut}}>
+        <AuthContext.Provider value={{signed: !!user, user, signIn, signOut, register}}>
             {children}
         </AuthContext.Provider>
     
