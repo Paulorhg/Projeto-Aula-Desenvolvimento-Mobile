@@ -52,9 +52,12 @@ export default function Login() {
                     onPress={() => navigateToRegister()}
                     style={styles.register}
                 >
-                    <Text>Cadastrar</Text>
+
+                         <Text> Cadastrar </Text>
+
                 </TouchableOpacity>
             </View>
         </View>
+        
     );
 }

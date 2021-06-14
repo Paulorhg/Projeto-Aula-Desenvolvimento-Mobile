@@ -28,8 +28,10 @@ export default StyleSheet.create({
 
     content:{
         flex: 1,
+        marginTop: 90,
         alignItems: "center",
-        justifyContent: "space-around"
+        flexDirection : "column",
+        justifyContent: "flex-start"
     },
 
     title: {

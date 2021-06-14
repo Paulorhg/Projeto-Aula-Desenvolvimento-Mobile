@@ -34,6 +34,7 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold"
     },
+    
 
     input: {
         height: 40,
@@ -44,10 +45,22 @@ export default StyleSheet.create({
         backgroundColor: "#DCDCDC"
       },
 
+      cad: {
+        flex: 1,
+        padding: 50,
+        fontSize: 18,
+        marginTop: -40,
+        color: "#2f86e6"        
+
+    },
+
+
     button: {
         flex: 1,
-        marginTop: 10,
-        padding: 50,        
+        padding: 50,
+        fontSize: 18,
+        marginTop: -40,
+        color: "#2f86e6"        
 
     }
 });
