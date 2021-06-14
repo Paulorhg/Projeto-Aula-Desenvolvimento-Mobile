@@ -43,6 +43,7 @@ export default function UserReserve({route}) {
                 <Text style={styles.titleText}>Descrição</Text>
                 <Text style={styles.text}>{estabelecimento.descricao}</Text>
                 <Text style={styles.titleText}>Avaliação:</Text>
+                <Text style={styles.text}>{estabelecimento.avaliacao}</Text>
                 <Text style={styles.titleText}>Endereço</Text>
                 <Text style={styles.text}>{estabelecimento.endereco}</Text>
                 <Text style={styles.titleText}>Telefone</Text>
