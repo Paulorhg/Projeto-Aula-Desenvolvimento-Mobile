@@ -9,10 +9,9 @@ import styles from "./styles";
 export default function Lista({route}) {
 
     const navigation = useNavigation();
-    const {categoria} = route.params;
-    const [ estabelecimentos, setEstabelecimentos] = useState([]);
+    const {estabelecimentos} = route.params;
+    //const [ estabelecimentos, setEstabelecimentos] = useState([]);
 
-    console.log(categoria)
 
     function navigateToCategoria(){
         navigation.navigate('Categoria');
@@ -25,15 +24,15 @@ export default function Lista({route}) {
         });
     }
 
-    useEffect(() => {
-        try {
-            api.get('/estabelecimento',{}).then(res => {
-                console.log(res.data.estabelecimentos);
-                setEstabelecimentos(res.data.estabelecimentos);
-            })
-        } catch (error) {
-        }
-    }, []);
+    // useEffect(() => {
+    //     try {
+    //         api.get('/estabelecimento',{}).then(res => {
+    //             console.log(res.data.estabelecimentos);
+    //             setEstabelecimentos(res.data.estabelecimentos);
+    //         })
+    //     } catch (error) {
+    //     }
+    // }, []);
 
 
     // const dados = ["Pizza", "Bares", "Shows", "Festas"];
@@ -60,13 +59,13 @@ export default function Lista({route}) {
                     data={estabelecimentos}
                     style={styles.estabelecimentos}
                     numColumns={1}
-                    keyExtractor={item => item}
+                    keyExtractor={item => item._id}
                     renderItem={({ item }) => {
                         return (
                             <TouchableOpacity 
                                 onPress={() => navigateToDetails(item)}
                             >
-                                <View style={styles.estabelecimento}>
+                                <View style={styles.estabelecimento} >
                                     <Text style={styles.textList}>{item.nome}</Text>
                                 </View>
                             </TouchableOpacity>

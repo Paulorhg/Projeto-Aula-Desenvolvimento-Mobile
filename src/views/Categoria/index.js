@@ -16,9 +16,9 @@ export default function Categoria({route}) {
 
     console.log("params " + cidade);
 
-    function navigateToList(idCat){
+    function navigateToList(estabelecimentos){
         navigation.navigate('Lista', {
-            categoria: idCat
+            estabelecimentos: estabelecimentos
         });
     }
 
@@ -64,7 +64,7 @@ export default function Categoria({route}) {
                         renderItem={({ item }) => {
                             return (
                                 <TouchableOpacity 
-                                    onPress={() => navigateToList(item._id)}
+                                    onPress={() => navigateToList(item.estabelecimento)}
                                 >
                                     <View style={styles.categoria}>
                                         <Text>{item.name}</Text>

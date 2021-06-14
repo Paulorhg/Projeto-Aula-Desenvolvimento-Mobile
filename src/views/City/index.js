@@ -50,9 +50,9 @@ export default function City() {
         })
     }, [cidades])
 
-    function handleSignOut(){
-        signOut();
-        navigator.navigate('Login')
+    async function handleSignOut(){
+        const response = await signOut();
+        //navigator.navigate('Login');
     }
 
     return (

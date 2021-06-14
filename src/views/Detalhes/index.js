@@ -35,12 +35,12 @@ export default function Detalhes({route}) {
             </View>
             <View style={styles.infos}>
                 <Text style={styles.titleText}>Descrição</Text>
-                <Text style={styles.text}>Texto Descrição</Text>
+                <Text style={styles.text}>{estabelecimento.descricao}</Text>
                 <Text style={styles.titleText}>Avaliação:</Text>
                 <Text style={styles.titleText}>Endereço</Text>
-                <Text style={styles.text}>texto endereço</Text>
+                <Text style={styles.text}>{estabelecimento.endereco}</Text>
                 <Text style={styles.titleText}>Telefone</Text>
-                <Text style={styles.text}>texto telefone</Text>
+                <Text style={styles.text}>{estabelecimento.telefone}</Text>
 
                 <Button title="Fazer Reserva" onPress={() => navigateToReserve()}></Button>
 
