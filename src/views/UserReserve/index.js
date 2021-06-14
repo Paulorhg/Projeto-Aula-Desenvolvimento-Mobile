@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
+import AuthContext from '../../contexts/auth';
 import { AntDesign } from '@expo/vector-icons';
 import api from '../../services/api';
 
 import styles from "./styles";
 
-export default function Detalhes({route}) {
+export default function UserReserve({route}) {
 
     const navigation = useNavigation();
-
-    const {estabelecimento} = route.params;
 
     function navigateToReserve(){
         navigation.navigate('Reserve', 
@@ -19,9 +18,15 @@ export default function Detalhes({route}) {
         });
     }
 
-    function navigateToLista(){
-        navigation.navigate('Lista');
-    }
+     useEffect(() => {
+        try {
+            api.get('/reserva',{}).then(res => {
+                console.log(res.data);
+                setReservas(res.data);
+            })
+        } catch (error) {
+        }
+    }, []);
 
     return (
         <View style={styles.container}>

@@ -13,7 +13,7 @@ export default StyleSheet.create({
         backgroundColor: "#EF7676",
         alignItems: "center",
     },
-    
+
     returnButton:{
         alignSelf: "stretch",
         justifyContent: "flex-start",
@@ -41,11 +41,5 @@ export default StyleSheet.create({
 
     text:{
         marginBottom: 20,
-    },
-
-    btnDate:{
-        marginTop: 30,
-        marginBottom: 30
-
     }
 });
