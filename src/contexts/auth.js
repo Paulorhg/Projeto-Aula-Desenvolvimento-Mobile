@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import {AsyncStorage} from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as auth from '../services/auth';
 import api from '../services/api';
 
@@ -12,8 +12,8 @@ export function AuthProvider({children}){
 
     useEffect(() => {
         async function localStorageData(){
-            const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
-            const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
+            const storagedUser = await AsyncStorage.getItem('@user');
+            const storagedToken = await AsyncStorage.getItem('@token');
 
             if(storagedUser && storagedToken){
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
@@ -32,8 +32,8 @@ export function AuthProvider({children}){
 
         api.defaults.headers.Authorization = `Bearer ${response.token}`;
 
-        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-        await AsyncStorage.setItem('@RNAuth:token', response.token);
+        await AsyncStorage.setItem('@user', JSON.stringify(response.user));
+        await AsyncStorage.setItem('@token', response.token);
     }
 
     async function signIn(email, senha){
@@ -41,13 +41,13 @@ export function AuthProvider({children}){
         const response = await auth.signIn(email, senha);
 
         console.log(response);
-        
+
         setUser(response.user);
 
         api.defaults.headers.Authorization = `Bearer ${response.token}`;
 
-        await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
-        await AsyncStorage.setItem('@RNAuth:token', response.token);
+        await AsyncStorage.setItem('@user', JSON.stringify(response.user));
+        await AsyncStorage.setItem('@token', response.token);
     }
 
     async function signOut(){
