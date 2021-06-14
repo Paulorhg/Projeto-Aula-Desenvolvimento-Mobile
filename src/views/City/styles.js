@@ -22,7 +22,9 @@ export default StyleSheet.create({
 
     content:{
         flex: 1,
+        //marginTop: 80,
         alignItems: "center",
+        flexDirection : "column",
         justifyContent: "space-around"
     },
 
@@ -39,7 +41,7 @@ export default StyleSheet.create({
         alignSelf: "stretch",
         justifyContent: "flex-start",
         marginLeft: 15,
-        marginTop: -15,
+        marginTop: 10,
         marginBottom: 10,
         backgroundColor: "#EF7676",
     }

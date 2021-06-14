@@ -78,7 +78,7 @@ export default function City() {
                     <DropDownPicker
                         items={items}
                         defaultValue={'Cidade'}
-                        containerStyle={{height: 50, width: 200}}
+                        containerStyle={{height: 80, width: 300}}
                         style={{backgroundColor: '#fafafa'}}
                         itemStyle={{
                             justifyContent: 'flex-start'
@@ -87,7 +87,7 @@ export default function City() {
                         onChangeItem={item => setValue(item.value)}
                     />
                     
-                    <Button style={styles.button} title="Proximo" onPress={navigateToCategoria}/>
+                    <Button style={styles.button} title="Próximo" onPress={navigateToCategoria}/>
                 </View>
             }
         </View>

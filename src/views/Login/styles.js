@@ -17,13 +17,17 @@ export default StyleSheet.create({
 
     textHeader: {
         fontSize: 30,
+        marginTop: 20,
         fontWeight: "bold"
     },
 
     content:{
         flex: 1,
+        marginTop: 90,
         alignItems: "center",
-        justifyContent: "space-around"
+        flexDirection : "column",
+        justifyContent: "flex-start"
+
     },
 
     title: {
@@ -41,6 +45,8 @@ export default StyleSheet.create({
       },
 
     button: {
+        flex: 1,
+        marginTop: 10,
         padding: 50,        
 
     }
