@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+
 export default StyleSheet.create({
 
     container: {
@@ -41,5 +42,15 @@ export default StyleSheet.create({
 
     text:{
         marginBottom: 20,
-    }
+    },
+
+    estabelecimento:{
+        width: 320,
+        height: 120,
+        backgroundColor: "#C4C4C4",
+        margin: 15,
+
+        justifyContent: "center",
+        alignItems: "center",
+    },
 });

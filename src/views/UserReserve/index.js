@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext} from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Text, TouchableOpacity,FlatList, Button } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import AuthContext from '../../contexts/auth';
 import { AntDesign } from '@expo/vector-icons';
@@ -11,18 +11,19 @@ export default function UserReserve({route}) {
 
     const navigation = useNavigation();
 
+    const [reserva, setReserva] = useState();
+    const [reservas, setReservas] = useState([]);
+
     function navigateToReserve(){
-        navigation.navigate('Reserve', 
-        {
-            estabelecimento: estabelecimento
-        });
+        navigation.navigate('Reserve');
     }
 
      useEffect(() => {
         try {
             api.get('/reserva',{}).then(res => {
-                console.log(res.data);
-                setReservas(res.data);
+                console.log("///////////////////////////////////////" + res.data);
+                setReservas(res.data.reservas);
+                 console.log(reservas);
             })
         } catch (error) {
         }
@@ -32,26 +33,38 @@ export default function UserReserve({route}) {
         <View style={styles.container}>
             <View style={styles.header}>
             <TouchableOpacity 
-                onPress={() => navigateToLista()}
+                onPress={() => navigateToReserve()}
                 style={styles.returnButton}
             >
                 <AntDesign name="left" size={24} color="#fff" />
             </TouchableOpacity>
-                <Text style={styles.textHeader}>{estabelecimento.nome}</Text>
+                <Text style={styles.textHeader}>Reservas</Text>
             </View>
-            <View style={styles.infos}>
-                <Text style={styles.titleText}>Descrição</Text>
-                <Text style={styles.text}>{estabelecimento.descricao}</Text>
-                <Text style={styles.titleText}>Avaliação:</Text>
-                <Text style={styles.text}>{estabelecimento.avaliacao}</Text>
-                <Text style={styles.titleText}>Endereço</Text>
-                <Text style={styles.text}>{estabelecimento.endereco}</Text>
-                <Text style={styles.titleText}>Telefone</Text>
-                <Text style={styles.text}>{estabelecimento.telefone}</Text>
+            {
+                reservas.length === 0 ? <></>
+                
+                :
 
-                <Button title="Fazer Reserva" onPress={() => navigateToReserve()}></Button>
-
-            </View>
+                <FlatList
+                    data={reservas}
+                    style={styles.estabelecimentos}
+                    numColumns={1}
+                    keyExtractor={item => item._id}
+                    renderItem={({ item }) => {
+                        return (
+                            <TouchableOpacity 
+                                onPress={() => navigateToDetails(item)}
+                            >
+                                {console.log(reservas)}
+                                <View style={styles.estabelecimento} >
+                                    <Text style={styles.textList}>{item.estabelecimento.nome}</Text>
+                                    <Text style={styles.textList}>{item.date}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        );
+                    }}
+                />
+            }
         </View>
     );
 }

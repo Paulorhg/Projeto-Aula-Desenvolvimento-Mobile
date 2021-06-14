@@ -16,8 +16,6 @@ export default function Reserve({route}) {
 
     const {estabelecimento} = route.params;
 
-    const [reserva, setReserva] = useState();
-    const [reservas, setReservas] = useState([]);
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
@@ -25,7 +23,7 @@ export default function Reserve({route}) {
     async function navigateToReserve(){
 
         const data = {
-            user: user._id,
+            usuario: user._id,
             date: date,
             estabelecimento: estabelecimento._id
         }
@@ -38,7 +36,7 @@ export default function Reserve({route}) {
             
         }
 
-        navigation.navigate('Reserve');
+        navigation.navigate('UserReserve');
     }
 
     function navigateToDetails(){
@@ -91,7 +89,7 @@ export default function Reserve({route}) {
                     <View style={styles.btnDate}>
                         <AntDesign name="calendar" size={24} />
                         <Button onPress={showDatepicker} title="Escolher data" />
-                        <Text>{toString(date)}</Text>
+                        {/* <Text>{toString(date)}</Text> */}
                         
                     </View>
                     <View style={styles.btnDate}>
