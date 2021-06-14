@@ -22,10 +22,18 @@ export default StyleSheet.create({
 
     content:{
         flex: 1,
-        //marginTop: 80,
+        marginTop: 80,
         alignItems: "center",
         flexDirection : "column",
-        justifyContent: "space-around"
+        justifyContent: "flex-start"
+    },
+
+    content2:{
+        flex: 1,
+        marginTop: 100,
+        alignItems: "center",
+        flexDirection : "column",
+        justifyContent: "flex-start"
     },
 
     title: {

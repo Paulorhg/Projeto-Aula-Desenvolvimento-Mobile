@@ -65,7 +65,7 @@ export default function City() {
                     <AntDesign name="poweroff" size={24} color="#fff" />
                 </TouchableOpacity>
             <Text style={styles.textHeader}>
-                CIDADE</Text>
+                CIDADES</Text>
             </View>
 
             {
@@ -74,11 +74,14 @@ export default function City() {
                 <View style={styles.content}>
 
                     <Text style={styles.title}>Escolha a cidade</Text>
+                    
 
+                    <View style={styles.content2}>
                     <DropDownPicker
                         items={items}
                         defaultValue={'Cidade'}
-                        containerStyle={{height: 80, width: 300}}
+                        containerStyle={{height: 50, width: 300}}
+                        fontSize = {50}
                         style={{backgroundColor: '#fafafa'}}
                         itemStyle={{
                             justifyContent: 'flex-start'
@@ -88,6 +91,7 @@ export default function City() {
                     />
                     
                     <Button style={styles.button} title="Próximo" onPress={navigateToCategoria}/>
+                </View>
                 </View>
             }
         </View>
